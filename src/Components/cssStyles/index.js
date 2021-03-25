@@ -5,9 +5,7 @@ export class Valid extends React.Component{
 
     constructor(props) {
         super(props);
-        let input = props.input;
-        let area = props.area;
-        this.state = {input: input, inputValid: true, area: area, areaValid: true
+        this.state = {input: '', inputValid: true, area: '', areaValid: true
         };
         this.onInputChange = this.onInputChange.bind(this);
         this.onAreaChange = this.onAreaChange.bind(this);
@@ -15,21 +13,20 @@ export class Valid extends React.Component{
       }
               
         onAreaChange(e) {
-            let val = e.target.value;
-            let valid = val.length>5 ? false: true;
-            this.setState({area: val, areaValid: valid});
+            this.setState({area: e.target.value});
+            let valid = this.state.area.length>4 ? false: true;
+            this.setState({areaValid: valid});
         }
         
         onInputChange(e) {
-            let val = e.target.value;
-            let valid = val.length>5 ? false: true;
-            this.setState({input: val, inputValid: valid});
+           this.setState({input: e.target.value});
+            let valid = this.state.input.length>4 ? false: true;
+            this.setState({inputValid: valid});
         }
    
         handleSubmit(e) {
             e.preventDefault();
-            if(this.state.inputValid === true && this.state.areaValid===true
-                ){
+            if(this.state.inputValid && this.state.areaValid){
                 console.log('submit success');
             }
             else console.log("Something is wrong, check inputs");
